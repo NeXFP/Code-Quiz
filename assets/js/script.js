@@ -17,7 +17,7 @@ let questions = [
         answer: 4
     },
     {
-        question: "Which of these data types are used JavaScript?",
+        question: "Which of these data types are used in JavaScript?",
         choice1: "Booleans",
         choice2: "Flexbox",
         choice3: "Comments",
@@ -49,7 +49,6 @@ startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [... questions];
-    console.log(availableQuestions);
     getNewQuestion(); 
 };
 
@@ -70,7 +69,7 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        if(acceptingAnswers) return;
+       // if(acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
