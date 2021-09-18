@@ -13,6 +13,8 @@ const question = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
 const scoreEl = document.querySelector('#score');
 const timerEl = document.getElementById('timer');
+const submitEl = document.getElementById("submitPage");
+const finalScore = document.getElementById("finalScore");
 
 // Some Variables
 let currentQuestion = {};
@@ -22,6 +24,7 @@ let questionCounter = 0;
 let availableQuestions = [];
 const correct_bonus = 10;
 const max_questions = 4;
+let timeLeft;
 
 // Question and Answer List
 let questions = [
@@ -76,11 +79,22 @@ function startQuiz() {
     getNewQuestion(); 
 };
 
+function submitPage() {
+    finalScore.innerText = score;
+    intro.style.display = "none";
+    quiz.style.display = "none";
+    hsPage.style.display = "none";
+    timerEl.style.display = "none";
+    submitEl.style.display = "flex";
+}
 
-// Highscore Screen
+// High Score Screen Function
 function highscoreScreen() {
     intro.style.display = "none";
-    hsPage.style.display = "flex";
+    quiz.style.display = "none";
+    hsPage.style.display = "block";
+    timerEl.style.display = "none";
+    submitEl.style.display = "none";
 }
 
 // Function to get a new question
@@ -101,17 +115,38 @@ getNewQuestion = () => {
 // Number generater for new question function
 var questionInOrder = function() {
     for (i = 0; i < 4; i++) {
-        if (i > 3) {
-            highscorePage();
-        } else {
-            return i;
-        }
+        return i;
     }
 }
 
+// Function for the score
+function setCounterText() {
+    scoreEl.textContent = score;
+}
+
+// Additional function for the score
+choices.forEach(choice => {
+    choice.addEventListener("click", e => {
+       //if(acceptingAnswers) return;
+
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset["number"];
+        var correctAnswer = (questions[questionCounter - 1].answer);
+        if ((selectedAnswer === '4' && correctAnswer === 4) || (selectedAnswer === '1' && correctAnswer === 1)
+         || (selectedAnswer === '3' && correctAnswer === 3) || (selectedAnswer === '2' && correctAnswer === 2)) {
+            score = score + 5;
+            setCounterText();
+        } else {
+            timeLeft = timeLeft - 10;
+        }
+        getNewQuestion();
+    });
+});
+
 // Function for the timer
 function timer() {
-    var timeLeft = 60;
+    timeLeft = 60;
 
     var timeInterval = setInterval(function() {
         if (timeLeft >= 0) { 
@@ -123,33 +158,7 @@ function timer() {
     }, 1000);
 }
 
-// Function for the score
-function setCounterText() {
-    scoreEl.textContent = count;
-}
-
-// Additional function for the score
-choices.forEach(choice => {
-    choice.addEventListener("click", e => {
-       //if(acceptingAnswers) return;
-
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset["number"];
-
-        /*
-        if((selectedAnswer === 1 && answer === 1) || (selectedAnswer === 2 && answer === 2) || (selectedAnswer === 3 && answer === 3) || (selectedAnswer === 4 && answer === 4)) {
-            score++;
-            setCounterText();
-        }
-        */
-
-        getNewQuestion();
-    });
-});
-
 // Event Listeners for buttons
 start.addEventListener("click", startQuiz)
 highScore.addEventListener("click", highscoreScreen)
 home.addEventListener("click", homePage)
-

@@ -154,3 +154,40 @@ h3 span {
     display: flex;
     flex-direction: row;
 }
+
+/* Submit Highscorescreen Styling Starts */
+footer {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 5.4rem;
+}
+
+footer h1 {
+    font-size: 5.4rem;
+}
+
+footer p {
+    font-size: 3.4rem;
+}
+
+footer div {
+    margin-top: 3rem;
+}
+
+footer div input {
+    color: rgb(114, 114, 194);
+    font-size: 2rem;
+}
+
+footer div button {
+    background-color: rgb(114, 114, 194);
+    border-radius: 1.4rem;
+}
+
+footer div button:hover {
+    cursor: pointer;
+    background-color: rgb(114, 114, 194);
+}
+/* Submit Highscorescreen Styling Ends */
