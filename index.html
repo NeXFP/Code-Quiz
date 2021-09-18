@@ -49,16 +49,15 @@
             </section>
 
         <article id="hsPage" style="display: none">
-            <div>
-                <h2>HighScores</h2>
+            <div class = "flex-center flex-column">
+                <h2>High Scores</h2>
             </div>
 
-            <div>
-            </div>
+            <div id= "scoreList" class = "flex-center flex-column"></div>
 
-            <div class="buttons">
+            <div class = "flex-center flex-column">
                 <button class ='btn' id="home">Go Back</button>
-                <button class ='btn'>Clear Highscores</button>
+                <button id = "clrBtn" class ='btn'>Clear Highscores</button>
             </div>
         </article>
 
@@ -66,8 +65,9 @@
             <h2>You have completed the quiz!</h2>
             <p> Your final score is <span id="finalScore">0</span>.</p>
             <div class ="form-group">
-                <input type ="text" name="task-name" placeholder="Enter your first name"/>
-                <button>Submit here!</button>
+                <input type ="text" name="task-name" placeholder="Input Your Name" id = "inpKey"/>
+                <button id = "submitBtn" class = "btn">Submit here!</button>
+                <button id = "goHome" class = "btn">Go Home!</button>
             </div>
         </footer>
         <script src="./assets/js/script.js"></script>

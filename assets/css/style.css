@@ -150,6 +150,10 @@ h1 span {
     
 }
 
+h2 {
+    display:inline;
+}
+
 h3 span {
     display: flex;
     flex-direction: row;
@@ -190,4 +194,42 @@ footer div button:hover {
     cursor: pointer;
     background-color: rgb(114, 114, 194);
 }
-/* Submit Highscorescreen Styling Ends */
+
+#submitBtn {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.1rem 0 rgba(1, 58, 87, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    height: 3.6rem;
+    width: 10rem;
+    color:black;
+}
+#goHome {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.1rem 0 rgba(1, 58, 87, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    height: 3.6rem;
+    width: 10rem;
+    color:black;
+}
+
+#scoreList {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: white;
+    border:solid;
+    border-width: .2rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50rem;
+    margin-bottom: 5rem;
+}
+
+/*Highscorescreen Styling Ends */

@@ -7,6 +7,10 @@ const home = document.getElementById('home');
 const intro = document.getElementById('intro');
 const quiz = document.getElementById('quiz');
 const hsPage = document.getElementById('hsPage');
+const inpKey = document.getElementById('inpKey');
+const subBtn = document.getElementById('submitBtn');
+const goHome = document.getElementById('goHome');
+const clrBtn = document.getElementById('clrBtn')
 
 // Some References
 const question = document.getElementById('question');
@@ -15,6 +19,8 @@ const scoreEl = document.querySelector('#score');
 const timerEl = document.getElementById('timer');
 const submitEl = document.getElementById("submitPage");
 const finalScore = document.getElementById("finalScore");
+const scoreList = document.getElementById("scoreList")
+
 
 // Some Variables
 let currentQuestion = {};
@@ -97,8 +103,19 @@ function highscoreScreen() {
     submitEl.style.display = "none";
 }
 
+function clearBtn() {
+    scoreList.innerText = "";
+    intro.style.display = "none";
+    quiz.style.display = "none";
+    hsPage.style.display = "block";
+    timerEl.style.display = "none";
+}
+
 // Function to get a new question
 getNewQuestion = () => {
+    if(questionCounter > 3){
+        submitPage();
+    }
     questionCounter++;
     const questionIndex = questionInOrder();
     currentQuestion = availableQuestions[questionIndex];
@@ -133,8 +150,8 @@ choices.forEach(choice => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
         var correctAnswer = (questions[questionCounter - 1].answer);
-        if ((selectedAnswer === '4' && correctAnswer === 4) || (selectedAnswer === '1' && correctAnswer === 1)
-         || (selectedAnswer === '3' && correctAnswer === 3) || (selectedAnswer === '2' && correctAnswer === 2)) {
+        if ((selectedAnswer === '1' && correctAnswer === 1) || (selectedAnswer === '2' && correctAnswer === 2)
+         || (selectedAnswer === '3' && correctAnswer === 3) || (selectedAnswer === '4' && correctAnswer === 4)) {
             score = score + 5;
             setCounterText();
         } else {
@@ -153,12 +170,36 @@ function timer() {
             timerEl.innerText = timeLeft;
             timeLeft--;
         } else {
-            clearInterval(timeInterval);
+            submitPage();
         }
     }, 1000);
 }
+
+
+subBtn.onclick = function() {
+    const name = inpKey.value;
+    const points = finalScore.textContent;
+    
+    if(name) {
+        localStorage.setItem(name, points);
+    }
+};
+
+clrBtn.onclick = function() {
+    localStorage.clear();
+}
+
+
+for (let j = 0; j < localStorage.length; j++) {
+    const key = localStorage.key(j);
+    const value = localStorage.getItem(key);
+
+    scoreList.innerHTML += `${key}: ${value}<br/>`;
+};
 
 // Event Listeners for buttons
 start.addEventListener("click", startQuiz)
 highScore.addEventListener("click", highscoreScreen)
 home.addEventListener("click", homePage)
+goHome.addEventListener("click", homePage)
+clrBtn.addEventListener("click", clearBtn)
