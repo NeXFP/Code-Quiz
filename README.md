@@ -17,5 +17,11 @@
  you back to the homepage. Here you also need to refresh the page for the it to update properly and the score to successfully pull into the display.
 
 ## High Scores
+
  On this page, your name will appear with your score. When you click clear high scores, it will clear the items from local storage and you will have to refresh the page for the update to display on the page.
- 
+
+## Links
+
+ https://nexfp.github.io/Code-Quiz/
+ https://github.com/NeXFP/Code-Quiz
+ ![Code Screenshot](https://user-images.githubusercontent.com/88305762/133944023-0bc87cc6-1ef4-4315-8be5-9e13e70ed8a0.png)
